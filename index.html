@@ -39,55 +39,9 @@
     </tr>
   </tbody>
 </table>
-<?php
-$facilidade = include 'facilidade.php';
-$dificuldade = include 'dificuldade.php';
-$sorteio;
-function verifica($facilidade,$dificuldade){
-  $quantifacilidade = 0;
-  foreach($facilidade  as $fa){
-      $quantifacilidade+=$fa['alunos'];
-  }
-  echo $quantifacilidade;
-  $contdif = 0;
-  echo '<br/>';
-  foreach($dificuldade  as $fa){
-      $contdif+=$fa['tutores'];
-  }
-  echo $contdif;
-}
-
-function busca($value,$arr){
-  $index=false;
-  for($l=0;$l<$arr;$l++){
-    if(array_search($value,$arr[$l]))
-      {
-        $index=['posicao'=>$l,'dados'=>$arr[$l]];
-        break;
-      }
-  }
-  return $index;
-}
-echo '<pre/>';
-verifica($facilidade,$dificuldade);
-
-//array_search('Ariana Grande', $arr[array_rand($arr,1)])
-
-echo "<br>SEGUNDA PARTE: SORTEIO";
-echo '<br>';
-$res = busca('Ariana Grande',$facilidade);
-print_r($res);
-
-//echo $facilidade[$index]['nome']." ".$facilidade[$index]['alunos'];
-
-
-echo "<br>";
-echo "Com dificuldade: ".count($dificuldade);
-echo "<br>";
-echo "Com facilidade: ".count($facilidade);
-
-?>
 <!-- Conteúdo aqui -->
 </div>
+<script src="js/Controllers/SoterioController.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
