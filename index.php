@@ -42,6 +42,16 @@
 <?php
 $facilidade = include 'facilidade.php';
 $dificuldade = include 'dificuldade.php';
+
+function verifica($facilidade,$dificuldade){
+
+}
+function sortea($tutores,$alunos){
+  
+}
+function organiza(){
+
+}
 echo '<pre/>';
 $quantifacilidade = 0;
 foreach($facilidade  as $fa){
@@ -57,16 +67,12 @@ echo $contdif;
 
 echo "<br>SEGUNDA PARTE: SORTEIO";
 
-foreach($dificuldade  as $fa){
-    echo "<br>".$fa['nome'].": ".$fa['tutores'];
-}
+
 echo "<br>";
 echo "Com dificuldade: ".count($dificuldade);
 echo "<br>";
 echo "Com facilidade: ".count($facilidade);
-foreach ($dificuldade as $value) {
-    $value['tutores']>1?print_r($value):0;
-}
+
 ?>
 <!-- Conteúdo aqui -->
 </div>
