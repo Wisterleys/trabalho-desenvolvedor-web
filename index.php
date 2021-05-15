@@ -42,9 +42,19 @@
 <?php
 $facilidade = include 'facilidade.php';
 $dificuldade = include 'dificuldade.php';
-
+$sorteio;
 function verifica($facilidade,$dificuldade){
-
+  $quantifacilidade = 0;
+  foreach($facilidade  as $fa){
+      $quantifacilidade+=$fa['alunos'];
+  }
+  echo $quantifacilidade;
+  $contdif = 0;
+  echo '<br/>';
+  foreach($dificuldade  as $fa){
+      $contdif+=$fa['tutores'];
+  }
+  echo $contdif;
 }
 function sortea($tutores,$alunos){
   
@@ -52,21 +62,18 @@ function sortea($tutores,$alunos){
 function organiza(){
 
 }
+function salva(){
+
+}
 echo '<pre/>';
-$quantifacilidade = 0;
-foreach($facilidade  as $fa){
-    $quantifacilidade+=$fa['alunos'];
-}
-echo $quantifacilidade;
-echo '<br/>';
-$contdif = 0;
-foreach($dificuldade  as $fa){
-    $contdif+=$fa['tutores'];
-}
-echo $contdif;
+verifica($facilidade,$dificuldade);
+
+
 
 echo "<br>SEGUNDA PARTE: SORTEIO";
-
+echo '<br>';
+$index = array_rand($facilidade, 1);
+echo $facilidade[$index]['nome']." ".$facilidade[$index]['alunos'];
 
 echo "<br>";
 echo "Com dificuldade: ".count($dificuldade);
