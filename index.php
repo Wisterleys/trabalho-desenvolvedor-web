@@ -56,24 +56,30 @@ function verifica($facilidade,$dificuldade){
   }
   echo $contdif;
 }
-function sortea($tutores,$alunos){
-  
-}
-function organiza(){
 
-}
-function salva(){
-
+function busca($value,$arr){
+  $index=false;
+  for($l=0;$l<$arr;$l++){
+    if(array_search($value,$arr[$l]))
+      {
+        $index=['posicao'=>$l,'dados'=>$arr[$l]];
+        break;
+      }
+  }
+  return $index;
 }
 echo '<pre/>';
 verifica($facilidade,$dificuldade);
 
-
+//array_search('Ariana Grande', $arr[array_rand($arr,1)])
 
 echo "<br>SEGUNDA PARTE: SORTEIO";
 echo '<br>';
-$index = array_rand($facilidade, 1);
-echo $facilidade[$index]['nome']." ".$facilidade[$index]['alunos'];
+$res = busca('Ariana Grande',$facilidade);
+print_r($res);
+
+//echo $facilidade[$index]['nome']." ".$facilidade[$index]['alunos'];
+
 
 echo "<br>";
 echo "Com dificuldade: ".count($dificuldade);
