@@ -12,7 +12,7 @@ return [
 ["nome"=>"Bianca Comparato","tutores"=>1],
 ["nome"=>"Bruno De Luca","tutores"=>1],
 ["nome"=>"Betty Faria","tutores"=>1],
-["nome"=>"Bárbara Evans","tutores"=>2],
+["nome"=>"Bárbara Evans","tutores"=>1],
 ["nome"=>"Bella Falconi","tutores"=>2],
 ["nome"=>"Bela Fernandes","tutores"=>1],
 ["nome"=>"Bruno Ferrari","tutores"=>1],
