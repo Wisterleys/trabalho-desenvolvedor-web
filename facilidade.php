@@ -10,7 +10,7 @@ return [
         ["nome"=>"Ana Furtado","alunos"=>1],
         ["nome"=>"Ana Paula Araújo","alunos"=>1],
         ["nome"=>"Ariana Grande","alunos"=>1],
-        ["nome"=>"Ana Paula Arósio","alunos"=>2],
+        ["nome"=>"Ana Paula Arósio","alunos"=>1],
         ["nome"=>"Arthur Aguiar","alunos"=>1],
         ["nome"=>"Aryane Steinkopf","alunos"=>1],
         ["nome"=>"Novela Alto Astral","alunos"=>2],

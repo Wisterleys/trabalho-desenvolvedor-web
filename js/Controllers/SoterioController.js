@@ -4,6 +4,11 @@ class SorteioController{
         this._difficulty;
         this.ajaxGet();
     }
+    toRepair(arr){
+        let validate= Math.abs(arr[0].v-arr[1].v2)
+        let counter=0;
+        console.log(arr,validate)
+    }
     check(value,value2){
         let arr=[{v:0},{v2:0}];
         value.forEach(e => {
@@ -23,7 +28,7 @@ class SorteioController{
             let res = JSON.parse(ajax.responseText)
             this.ease=res.facilidade;
             this.difficulty=res.dificuldade;
-            console.log(this.check(this.ease,this.difficulty))
+            !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
             console.log(this.ease,this.difficulty)
         }
         ajax.onerror=err=>{
