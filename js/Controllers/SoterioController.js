@@ -15,14 +15,26 @@ class SorteioController{
         let loop = setInterval(()=>{
             switch(turn){
                 case 0:
-                    
+                    let num = this.toRaffle(this.ease.length-1,0)
+                        if(this.current_list.indexOf(this.ease[num].nome)<0){
+                            this.ease[num].alunos+=1;
+                            this.current_list.push(this.ease[num].nome)
+                            counter++;
+                            if(counter>=validate)clearInterval(loop)
+                        }
                     break;
                 case 1:
-                
+                    let num = this.toRaffle(this.ease.length-1,0)
+                    if(this.current_list.indexOf(this.difficulty[num].nome)<0){
+                        this.difficulty[num].alunos+=1;
+                        this.current_list.push(this.difficulty[num].nome)
+                        counter++;
+                        if(counter>=validate)clearInterval(loop)
+                    }
                     break;
             }
         },100)
-        console.log(arr,validate,turn)
+        console.log(arr,validate,this.ease[this.toRaffle(this.ease.length-1,0)])
     }
     check(value,value2){
         let arr=[{v:0},{v2:0}];
