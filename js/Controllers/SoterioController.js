@@ -4,10 +4,13 @@ class SorteioController{
         this._difficulty;
         this.ajaxGet();
     }
+    toRaffle(max,min){
+        return Math.round(Math.random() * (max - min) + min);
+    }
     toRepair(arr){
         let validate= Math.abs(arr[0].v-arr[1].v2)
         let counter=0;
-        console.log(arr,validate)
+        console.log(arr,validate,this.toRaffle(10,0))
     }
     check(value,value2){
         let arr=[{v:0},{v2:0}];
