@@ -9,8 +9,31 @@
 </head>
 <body>
 <div class="container">
-
+<ul class="list-group">
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+</ul>
 </div>
+<script>
+    let lis = document.querySelectorAll(".list-group-item");
+    lis.forEach(li=>{
+        li.addEventListener("click",e=>{
+            lis.forEach(li=>{
+                li.classList.remove("active");
+                
+            })
+            e.target.classList.toggle("active")
+        })
+    })
+</script>
 <script src="js/Controllers/SoterioController.js"></script>
 <script src="js/index.js"></script>
 </body>
