@@ -10,20 +10,36 @@
 <body>
 <div class="container">
 <ul class="list-group">
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
-    <li class="list-group-item"><input type="checkbox" name="" id=""> teste</li>
+    <li class="list-group-item"><input type="checkbox"> Receber o array e verificar </li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>
 </ul>
 </div>
 <script>
+    function checkeds(lis){
+        if(localStorage.getItem('lis')){
+            let l = JSON.parse(localStorage.getItem('lis'));
+            lis.forEach((li,i)=>{
+                li.querySelector("input").checked=l[i]?true:false;
+            })
+        }
+    }
+    function checkedsSalve(lis){
+        let ve=[];
+        lis.forEach(li=>{
+            ve.push(li.querySelector("input").checked);
+        })
+        localStorage.setItem("lis",JSON.stringify(ve))
+    }
     let lis = document.querySelectorAll(".list-group-item");
+    checkeds(lis)
     lis.forEach(li=>{
         li.addEventListener("click",e=>{
             lis.forEach(li=>{
@@ -31,6 +47,8 @@
                 
             })
             e.target.classList.toggle("active")
+            checkedsSalve(lis);
+            checkeds(lis);
         })
     })
 </script>
