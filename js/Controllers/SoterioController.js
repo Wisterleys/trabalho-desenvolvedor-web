@@ -5,12 +5,12 @@ class SorteioController{
         this.ajaxGet();
     }
     conferir(value,value2){
-        let arr=[0,0];
+        let arr=[{v:0},{v2:0}];
         value.forEach(e => {
-            arr[0]+=e['alunos'];
+            arr[0].v+=e['alunos'];
         });
         value2.forEach(e => {
-            arr[1]+=e['tutores'];      
+            arr[1].v2+=e['tutores'];      
         });
         console.log(arr)
     }
@@ -23,6 +23,7 @@ class SorteioController{
             this.facilidade=res.facilidade;
             this.dificuldade=res.dificuldade;
             this.conferir(this.facilidade,this.dificuldade)
+            console.log(this.facilidade,this.dificuldade)
         }
         ajax.onerror=err=>{
             console.log(err)
