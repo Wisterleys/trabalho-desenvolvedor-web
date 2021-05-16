@@ -12,7 +12,7 @@ class SorteioController{
         value2.forEach(e => {
             arr[1].v2+=e['tutores'];      
         });
-        console.log(arr)
+        return arr;
     }
     ajaxGet(){
         let ajax = new XMLHttpRequest();
@@ -22,7 +22,7 @@ class SorteioController{
             let res = JSON.parse(ajax.responseText)
             this.facilidade=res.facilidade;
             this.dificuldade=res.dificuldade;
-            this.conferir(this.facilidade,this.dificuldade)
+            console.log(this.conferir(this.facilidade,this.dificuldade))
             console.log(this.facilidade,this.dificuldade)
         }
         ajax.onerror=err=>{
