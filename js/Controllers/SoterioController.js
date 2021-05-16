@@ -12,6 +12,7 @@ class SorteioController{
         value2.forEach(e => {
             arr[1].v2+=e['tutores'];      
         });
+        arr.push(arr[0].v==arr[1].v2)
         return arr;
     }
     ajaxGet(){

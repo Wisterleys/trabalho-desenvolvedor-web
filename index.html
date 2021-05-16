@@ -18,22 +18,25 @@
         <p>
             No array de alunos tem o idex tutores que mostra quantos tutores esse aluno pode ter
         </p>
-        <p>
-            realizar a soma desses dois index e verificar se os valores são iguais, ou seja, e retornar o resultado.
-        </p>
+        
 
     </li>
     <li class="list-group-item"><input type="checkbox">
-        <p></p>
+        <p>
+            Receber o resultado da soma. Realizar a soma desses dois index e verificar se os valores são iguais, ou seja, e retornar o resultado.
+        </p>
+        <p>
+            verificar como vai ser realizando o sorteio
+        </p>
     </li>
+    <!--<li class="list-group-item"><input type="checkbox"> teste</li>
     <li class="list-group-item"><input type="checkbox"> teste</li>
     <li class="list-group-item"><input type="checkbox"> teste</li>
     <li class="list-group-item"><input type="checkbox"> teste</li>
     <li class="list-group-item"><input type="checkbox"> teste</li>
     <li class="list-group-item"><input type="checkbox"> teste</li>
     <li class="list-group-item"><input type="checkbox"> teste</li>
-    <li class="list-group-item"><input type="checkbox"> teste</li>
-    <li class="list-group-item"><input type="checkbox"> teste</li>
+    <li class="list-group-item"><input type="checkbox"> teste</li>-->
 </ul>
 </div>
 <script>
@@ -42,6 +45,7 @@
             let l = JSON.parse(localStorage.getItem('lis'));
             lis.forEach((li,i)=>{
                 li.querySelector("input").checked=l[i]?true:false;
+                l[i]?li.classList.add("active"):li.classList.remove("active")
             })
         }
     }
@@ -56,11 +60,6 @@
     checkeds(lis)
     lis.forEach(li=>{
         li.addEventListener("click",e=>{
-            lis.forEach(li=>{
-                li.classList.remove("active");
-                
-            })
-            e.target.classList.toggle("active")
             checkedsSalve(lis);
             checkeds(lis);
         })
