@@ -25,7 +25,7 @@ class SorteioController{
     }
     ajaxGet(){
         let ajax = new XMLHttpRequest();
-        ajax.open("GET",'sorteio.php');
+        ajax.open("GET",'php/sorteio.php');
         ajax.send();
         ajax.onload=e=>{
             let res = JSON.parse(ajax.responseText)
