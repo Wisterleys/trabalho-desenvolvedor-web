@@ -8,17 +8,44 @@ class SorteioController{
         this.ajaxGet();
     }
     print(){console.log(this.general_list,this.ease,this.difficulty)}
+    found(array,value){
+        return array.indexOf(value)>-1?true:false
+    }
     roulette(){
-        let validate= this.difficulty.length-1;
+        let validate= true;
         let counter=0;
-        let t = this.toRaffle(this.difficulty.length-1,0);
-        let a = this.toRaffle(this.ease.length-1,0);
-        let tu = false
-        let al = false
-        while (condition) {
+        let t;
+        let a;
+       
+        while (validate) {
+            let check=false
+
+            //VERIFICAÇÃO TUTOR
+            let l=0
+            let c=0
             while (condition) {
-            
+                t = this.toRaffle(this.difficulty.length-1,0)
+                while (condition) {
+                    a= this.toRaffle(this.ease.length-1,0);
+                    c++
+                }
+                l++
             }
+
+
+            //VERIFICAÇÃO ALUNO
+            l=0
+            c=0
+            while (condition) {
+                a = this.toRaffle(this.ease.length-1,0)
+                while (condition) {
+                    t= this.toRaffle(this.difficulty.length-1,0);
+                    c++
+                }
+                l++
+            }
+
+            this.difficulty.length<1&&this.ease.length<1?validate=false:0
         }
             
     }
@@ -41,6 +68,7 @@ class SorteioController{
                             clearInterval(loop);
                             console.log(this.check(this.ease,this.difficulty),this.current_list)
                             this.roulette();
+                            this.current_list=[]
                         }
                     }
                     break;
@@ -53,6 +81,7 @@ class SorteioController{
                             clearInterval(loop);
                             console.log(this.check(this.ease,this.difficulty))
                             this.roulette()
+                            this.current_list=[]
                         }
                     }
                     break;
