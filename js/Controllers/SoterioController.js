@@ -11,7 +11,7 @@ class SorteioController{
     toRepair(arr){
         let validate= Math.abs(arr[0].v-arr[1].v2)
         let counter=0;
-        let turn = this.toRaffle(1,0)
+        let turn = arr[0].v<arr[1].v2?0:1
         let loop = setInterval(()=>{
             let num = this.toRaffle(this.ease.length-1,0)
             switch(turn){
@@ -20,20 +20,26 @@ class SorteioController{
                         this.ease[num].alunos+=1;
                         this.current_list.push(this.ease[num].nome)
                         counter++;
-                        if(counter>=validate)clearInterval(loop)
+                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                            clearInterval(loop);
+                            console.log(this.check(this.ease,this.difficulty),this.current_list)
+                        }
                     }
                     break;
                 case 1:
                     if(this.current_list.indexOf(this.difficulty[num].nome)<0){
-                        this.difficulty[num].alunos+=1;
+                        this.difficulty[num].tutores+=1;
                         this.current_list.push(this.difficulty[num].nome)
                         counter++;
-                        if(counter>=validate)clearInterval(loop)
+                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                            clearInterval(loop);
+                            console.log(this.check(this.ease,this.difficulty))
+                        }
                     }
                     break;
             }
         },100)
-        console.log(arr,validate,this.ease[this.toRaffle(this.ease.length-1,0)])
+        console.log(arr,validate)
     }
     check(value,value2){
         let arr=[{v:0},{v2:0}];
