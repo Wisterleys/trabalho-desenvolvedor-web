@@ -1,9 +1,37 @@
 class SorteioController{
     constructor(){
+        // 0 = ease | 1 = difficulty
         this._ease;
         this._difficulty;
         this._current_list=[];
+        this.general_list=[];
         this.ajaxGet();
+    }
+    print(){console.log(this.general_list)}
+    roulette(){
+        let validate= this.difficulty.length-1;
+        let counter=0;
+        let loop = setInterval(()=>{
+            console.log("!")
+            let t = this.toRaffle(this.difficulty.length-1,0);
+            let a = this.toRaffle(this.ease.length-1,0);
+            if(this.difficulty.indexOf(this.difficulty[t])>-1){
+                if(this.ease.indexOf(this.ease[a])>-1){
+                    this.general_list.push({tutor:this.difficulty[t].nome,aluno:this.ease[a].nome})
+                    this.ease.splice(a,1);
+                    this.difficulty.splice(t,1);
+                } 
+            }
+            if(this.ease.indexOf(this.ease[a])>-1){
+                if(this.difficulty.indexOf(this.difficulty[t])>-1){
+                    this.general_list.push({tutor:this.difficulty[t].nome,aluno:this.ease[a].nome})
+                    this.ease.splice(a,1);
+                    this.difficulty.splice(t,1);
+                }
+            }
+            console.log(this.ease.length,this.difficulty.length)
+            if(this.ease.length<1||this.difficulty.length<1){this.print();clearInterval(loop)}
+        },10)
     }
     toRaffle(max,min){
         return Math.round(Math.random() * (max - min) + min);
@@ -13,7 +41,7 @@ class SorteioController{
         let counter=0;
         let turn = arr[0].v<arr[1].v2?0:1
         let loop = setInterval(()=>{
-            let num = this.toRaffle(this.ease.length-1,0)
+            let num = turn<1?this.toRaffle(this.ease.length-1,0):this.toRaffle(this.difficulty.length-1,0)
             switch(turn){
                 case 0:
                     if(this.current_list.indexOf(this.ease[num].nome)<0){
@@ -23,6 +51,7 @@ class SorteioController{
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                             clearInterval(loop);
                             console.log(this.check(this.ease,this.difficulty),this.current_list)
+                            this.roulette();
                         }
                     }
                     break;
@@ -34,6 +63,7 @@ class SorteioController{
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                             clearInterval(loop);
                             console.log(this.check(this.ease,this.difficulty))
+                            this.roulette()
                         }
                     }
                     break;

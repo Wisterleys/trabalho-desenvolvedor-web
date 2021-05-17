@@ -19,7 +19,7 @@ return [
 ["nome"=>"Barbara França","tutores"=>1],
 ["nome"=>"Bruno Gadiol","tutores"=>1],
 ["nome"=>"Bruno Gagliasso","tutores"=>2],
-["nome"=>"Bruno Garcia","tutores"=>1],
+["nome"=>"Bruno Garcia","tutores"=>4],
 ["nome"=>"Bela Gil","tutores"=>1],
 ["nome"=>"Brunna Gonçalves","tutores"=>1],
 ["nome"=>"Bruna Griphao","tutores"=>1],
