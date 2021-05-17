@@ -88,7 +88,7 @@ class SorteioController{
         ajax.send();
         ajax.onload=e=>{
             let res = JSON.parse(ajax.responseText)
-            document.write(JSON.stringify(res))
+            document.body.innerHTML=JSON.stringify(res)
             this.ease=res.facilidade;
             this.difficulty=res.dificuldade;
             !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
