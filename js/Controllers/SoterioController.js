@@ -13,9 +13,9 @@ class SorteioController{
         let counter=0;
         let turn = this.toRaffle(1,0)
         let loop = setInterval(()=>{
+            let num = this.toRaffle(this.ease.length-1,0)
             switch(turn){
                 case 0:
-                    let num = this.toRaffle(this.ease.length-1,0)
                         if(this.current_list.indexOf(this.ease[num].nome)<0){
                             this.ease[num].alunos+=1;
                             this.current_list.push(this.ease[num].nome)
@@ -24,7 +24,6 @@ class SorteioController{
                         }
                     break;
                 case 1:
-                    let num = this.toRaffle(this.ease.length-1,0)
                     if(this.current_list.indexOf(this.difficulty[num].nome)<0){
                         this.difficulty[num].alunos+=1;
                         this.current_list.push(this.difficulty[num].nome)
