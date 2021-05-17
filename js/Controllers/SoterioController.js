@@ -7,7 +7,7 @@ class SorteioController{
         this.general_list=[];
         this.ajaxGet();
     }
-    print(){console.log(this.general_list)}
+    print(){console.log(this.general_list,this.ease,this.difficulty)}
     roulette(){
         let validate= this.difficulty.length-1;
         let counter=0;
@@ -87,8 +87,8 @@ class SorteioController{
         ajax.open("GET",'php/sorteio.php');
         ajax.send();
         ajax.onload=e=>{
-            let res = JSON.parse(ajax.responseText)
-            document.body.innerHTML=JSON.stringify(res)
+            let res = ajax.responseText
+            document.body.innerHTML=res
             this.ease=res.facilidade;
             this.difficulty=res.dificuldade;
             !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
