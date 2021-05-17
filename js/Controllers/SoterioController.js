@@ -11,27 +11,16 @@ class SorteioController{
     roulette(){
         let validate= this.difficulty.length-1;
         let counter=0;
-        let loop = setInterval(()=>{
-            console.log("!")
-            let t = this.toRaffle(this.difficulty.length-1,0);
-            let a = this.toRaffle(this.ease.length-1,0);
-            if(this.difficulty.indexOf(this.difficulty[t])>-1){
-                if(this.ease.indexOf(this.ease[a])>-1){
-                    this.general_list.push({tutor:this.difficulty[t].nome,aluno:this.ease[a].nome})
-                    this.ease.splice(a,1);
-                    this.difficulty.splice(t,1);
-                } 
+        let t = this.toRaffle(this.difficulty.length-1,0);
+        let a = this.toRaffle(this.ease.length-1,0);
+        let tu = false
+        let al = false
+        while (condition) {
+            while (condition) {
+            
             }
-            if(this.ease.indexOf(this.ease[a])>-1){
-                if(this.difficulty.indexOf(this.difficulty[t])>-1){
-                    this.general_list.push({tutor:this.difficulty[t].nome,aluno:this.ease[a].nome})
-                    this.ease.splice(a,1);
-                    this.difficulty.splice(t,1);
-                }
-            }
-            console.log(this.ease.length,this.difficulty.length)
-            if(this.ease.length<1||this.difficulty.length<1){this.print();clearInterval(loop)}
-        },10)
+        }
+            
     }
     toRaffle(max,min){
         return Math.round(Math.random() * (max - min) + min);
