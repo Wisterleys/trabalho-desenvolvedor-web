@@ -95,6 +95,7 @@ class SorteioController{
             console.log(this.ease,this.difficulty)
         }
         ajax.onerror=err=>{
+document.body.innerHTML=err
             console.log(err)
         }
     }
