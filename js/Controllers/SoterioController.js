@@ -87,8 +87,7 @@ class SorteioController{
         ajax.open("GET",'php/sorteio.php');
         ajax.send();
         ajax.onload=e=>{
-            let res = ajax.responseText
-            document.body.innerHTML=res
+            let res = JSON.parse(ajax.responseText)
             this.ease=res.facilidade;
             this.difficulty=res.dificuldade;
             !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
