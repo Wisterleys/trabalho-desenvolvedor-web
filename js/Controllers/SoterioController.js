@@ -16,12 +16,12 @@ class SorteioController{
             let num = this.toRaffle(this.ease.length-1,0)
             switch(turn){
                 case 0:
-                        if(this.current_list.indexOf(this.ease[num].nome)<0){
-                            this.ease[num].alunos+=1;
-                            this.current_list.push(this.ease[num].nome)
-                            counter++;
-                            if(counter>=validate)clearInterval(loop)
-                        }
+                    if(this.current_list.indexOf(this.ease[num].nome)<0){
+                        this.ease[num].alunos+=1;
+                        this.current_list.push(this.ease[num].nome)
+                        counter++;
+                        if(counter>=validate)clearInterval(loop)
+                    }
                     break;
                 case 1:
                     if(this.current_list.indexOf(this.difficulty[num].nome)<0){
