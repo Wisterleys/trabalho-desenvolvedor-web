@@ -12,7 +12,25 @@ class SorteioController{
         return array.indexOf(value)>-1?false:true//Retorna falso se encontrar o valor e true se não encontrar
     }
     roulette(){
-         
+        console.log(this.ease)
+         let check=false;
+         while (!check) {
+             let arr=[]
+             let tutor = this.toRaffle(this.ease.length-1,0);
+             for (let index = 0; index < this.ease[tutor].alunos; index++) {
+                let aluno = this.toRaffle(this.difficulty.length-1,0);
+                if(this.difficulty[aluno]){
+                    arr.push(this.difficulty[aluno].nome)
+                    this.difficulty.splice(aluno,1)
+                }
+                
+                 
+             }
+             this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr})
+             this.ease.splice(tutor,1);
+             this.ease.length<1?check=true:0
+         }
+         console.log(this.ease,this.general_list)
     }
     toRaffle(max,min){
         return Math.round(Math.random() * (max - min) + min);
