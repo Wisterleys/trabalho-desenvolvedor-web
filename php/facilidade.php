@@ -2,7 +2,7 @@
 
 return [
         ["nome"=>"Adele","alunos"=>1],
-        ["nome"=>"Alicia Keys","alunos"=>1],
+        ["nome"=>"Alicia Keys","alunos"=>2],
         ["nome"=>"André Bankoff","alunos"=>1],
         ["nome"=>"Alinne Rosa","alunos"=>1],
         ["nome"=>"André Marques","alunos"=>1],
@@ -15,7 +15,7 @@ return [
         ["nome"=>"Aryane Steinkopf","alunos"=>1],
         ["nome"=>"Novela Alto Astral","alunos"=>1],
         ["nome"=>"Armando Babaioff","alunos"=>1],
-        ["nome"=>"Aracy Balabanian","alunos"=>1],
+        ["nome"=>"Aracy Balabanian","alunos"=>2],
         ["nome"=>"Aline BarrosAdriana Birolli","alunos"=>1],
         ["nome"=>"Alexandre Borges","alunos"=>1],
         ["nome"=>"Arianne Botelho","alunos"=>1],

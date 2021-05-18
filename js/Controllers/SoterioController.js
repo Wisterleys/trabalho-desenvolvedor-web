@@ -1,13 +1,43 @@
 class SorteioController{
-    constructor(){
+    constructor(obj){
         // 0 = ease | 1 = difficulty
+        this._printing_place=obj.place;
         this._ease;
         this._difficulty;
         this._current_list=[];
         this.general_list=[];
         this.ajaxGet();
     }
-    print(){console.log(this.general_list,this.ease,this.difficulty)}
+    test(val){
+        console.log(val)
+        console.log(val[0].v+val[1].v2)
+    }
+    print(){
+        this.general_list.forEach(res=>{
+            console.log(res.alunos)
+            this.printTemplate({nameTutor:res.tutor,alunos:res.alunos})
+        })
+    }
+    printTemplate(obj){
+        /*
+            <ul class="list-group col-sm-6">
+                <h1>LISTA</h1>
+                <li class="list-group-item">
+                </li>
+                <li class="list-group-item">
+                </li>
+                <li class="list-group-item">
+                </li>
+            </ul>
+   
+
+        */
+       let ul = this.createTags({place:this.printing_place,tag:"div",class:"list-group col-sm-6"})
+       this.createTags({place:ul,tag:"h5",class:"list-group-item active",insertTag:obj.nameTutor})
+       obj.alunos.forEach(aluno=>{
+        this.createTags({place:ul,tag:"li",class:"list-group-item",insertTag:aluno})
+       })
+    }
     found(array,value){
         return array.indexOf(value)>-1?false:true//Retorna falso se encontrar o valor e true se não encontrar
     }
@@ -23,14 +53,12 @@ class SorteioController{
                     arr.push(this.difficulty[aluno].nome)
                     this.difficulty.splice(aluno,1)
                 }
-                
-                 
              }
              this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr})
              this.ease.splice(tutor,1);
              this.ease.length<1?check=true:0
          }
-         console.log(this.ease,this.general_list)
+         this.print();
     }
     toRaffle(max,min){
         return Math.round(Math.random() * (max - min) + min);
@@ -49,7 +77,8 @@ class SorteioController{
                         counter++;
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                             clearInterval(loop);
-                            console.log(this.check(this.ease,this.difficulty),this.current_list)
+                            let val = this.check(this.ease,this.difficulty)
+                            this.test(val)
                             this.roulette();
                             this.current_list=[]
                         }
@@ -62,7 +91,8 @@ class SorteioController{
                         counter++;
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                             clearInterval(loop);
-                            console.log(this.check(this.ease,this.difficulty))
+                            let val = this.check(this.ease,this.difficulty)
+                            this.test(val)
                             this.roulette()
                             this.current_list=[]
                         }
@@ -95,11 +125,37 @@ class SorteioController{
             console.log(this.ease,this.difficulty)
         }
         ajax.onerror=err=>{
-document.body.innerHTML=err
             console.log(err)
         }
     }
+    createTags(obj={}){ //Método modelo para criar TAGs na tela
+        /*
+        exemplo
+        obj={
+            place:local,
+            tag:nome da tag que deseja criar,
+            insertTag: É para inserir uma tag dentro dessa nova tag criada ou só uma mensagem dentro da tag
+            tudo que adicionar depois disso é considerado atributo
+            a chave é considerada o nome do atributo e o valor é o valor mesmo rsrs
+        }
+        */
+        let tag;
+        if(obj.place && obj.tag){
+            tag = document.createElement(obj.tag);
+            for(let key in obj){
+                if(key != "place" && key != "tag" && key != "insertTag"){
+                    let att = document.createAttribute(key)
+                    att.value=obj[key];
+                    tag.setAttributeNode(att)
+                }
+            }
+            obj.insertTag?tag.innerHTML=obj.insertTag:0
+            obj.place.appendChild(tag);
+        }
+        return tag
+    }
     //SETs and GETs
+    get printing_place(){return this._printing_place;}
     get current_list(){return this._current_list;}
     set current_list(value){this._current_list=value;}
     get difficulty(){return this._difficulty;}
