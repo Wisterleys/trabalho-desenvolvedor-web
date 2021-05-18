@@ -9,45 +9,10 @@ class SorteioController{
     }
     print(){console.log(this.general_list,this.ease,this.difficulty)}
     found(array,value){
-        return array.indexOf(value)>-1?true:false
+        return array.indexOf(value)>-1?false:true//Retorna falso se encontrar o valor e true se não encontrar
     }
     roulette(){
-        let validate= true;
-        let counter=0;
-        let t;
-        let a;
-       
-        while (validate) {
-            let check=false
-
-            //VERIFICAÇÃO TUTOR
-            let l=0
-            let c=0
-            while (condition) {
-                t = this.toRaffle(this.difficulty.length-1,0)
-                while (condition) {
-                    a= this.toRaffle(this.ease.length-1,0);
-                    c++
-                }
-                l++
-            }
-
-
-            //VERIFICAÇÃO ALUNO
-            l=0
-            c=0
-            while (condition) {
-                a = this.toRaffle(this.ease.length-1,0)
-                while (condition) {
-                    t= this.toRaffle(this.difficulty.length-1,0);
-                    c++
-                }
-                l++
-            }
-
-            this.difficulty.length<1&&this.ease.length<1?validate=false:0
-        }
-            
+         
     }
     toRaffle(max,min){
         return Math.round(Math.random() * (max - min) + min);
