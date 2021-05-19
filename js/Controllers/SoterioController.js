@@ -22,13 +22,16 @@ class SorteioController{
         console.log(val)
         console.log(val[0].v+val[1].v2)
     }
+    clear(el){
+        el.forEach(e=>{e.remove()})
+    }
     print(){
+        this.clear(document.querySelectorAll(".list-group"))
         this.general_list.forEach(res=>{
             this.printTemplate({nameTutor:res.tutor,alunos:res.alunos})
         })
     }
     printTemplate(obj){
-       
        let ul = this.createTags({place:this.printing_place,tag:"ul",class:"list-group col-sm-6"})
        this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:obj.nameTutor})
        obj.alunos.forEach(aluno=>{
@@ -39,7 +42,7 @@ class SorteioController{
         return array.indexOf(value)>-1?false:true//Retorna falso se encontrar o valor e true se não encontrar
     }
     roulette(){
-        console.log(this.ease)
+        this.general_list=[];
          let check=false;
          while (!check) {
              let arr=[]
