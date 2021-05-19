@@ -4,8 +4,13 @@ class SorteioController{
         this._printing_place=obj.place;
         this._ease;
         this._difficulty;
+        this._origin_ease;
+        this._origin_difficulty;
         this._current_list=[];
         this.general_list=[];
+
+        // Methods
+        this.ajaxGetOrigin();
         this.ajaxGet();
         this.onBtn();
     }
@@ -15,7 +20,6 @@ class SorteioController{
     }
     print(){
         this.general_list.forEach(res=>{
-            console.log(res.alunos)
             this.printTemplate({nameTutor:res.tutor,alunos:res.alunos})
         })
     }
@@ -41,6 +45,10 @@ class SorteioController{
                 if(this.difficulty[aluno]){
                     arr.push(this.difficulty[aluno].nome)
                     this.difficulty.splice(aluno,1)
+                }
+                else{
+                    let aluno = this.toRaffle(this.origin_difficulty.length-1,0);
+                   arr.push(`<p class="container-fluid bg-danger text-light">${this.origin_difficulty[aluno].nome}<p>`)
                 }
              }
              this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr})
@@ -102,6 +110,20 @@ class SorteioController{
         arr.push(arr[0].v==arr[1].v2)
         return arr;
     }
+    ajaxGetOrigin(){
+        let ajax = new XMLHttpRequest();
+        ajax.open("GET",'php/sorteio.php');
+        ajax.send();
+        ajax.onload=e=>{
+            let res = JSON.parse(ajax.responseText)
+            console.log(res)
+            this.origin_ease=res.facilidade;
+            this.origin_difficulty=res.dificuldade;
+        }
+        ajax.onerror=err=>{
+            console.log(err)
+        }
+    }
     ajaxGet(){
         let ajax = new XMLHttpRequest();
         ajax.open("GET",'php/sorteio.php');
@@ -111,7 +133,6 @@ class SorteioController{
             this.ease=res.facilidade;
             this.difficulty=res.dificuldade;
             !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
-            console.log(this.ease,this.difficulty)
         }
         ajax.onerror=err=>{
             console.log(err)
@@ -161,4 +182,8 @@ class SorteioController{
     set difficulty(value){this._difficulty=value;}
     get ease(){return this._ease;}
     set ease(value){this._ease=value;}
+    get origin_ease(){return this._origin_ease;}
+    set origin_ease(value){this._origin_ease=value;}
+    get origin_difficulty(){return this._origin_difficulty;}
+    set origin_difficulty(value){this._origin_difficulty=value;}
 }
