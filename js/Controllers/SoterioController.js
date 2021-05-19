@@ -32,6 +32,7 @@ class SorteioController{
                             this.current_list=[]
                         }
                     }else{
+                        //Caso a quantidade de tutor e bem menor então e é preciso repitir sorteio com o mesmo tutor
                         if(counter>=this.current_list.length){
                             this.ease[num].alunos+=1;
                             counter++;
@@ -102,7 +103,8 @@ class SorteioController{
                 let aluno = this.toRaffle(this.difficulty.length-1,0);
                 if(this.difficulty[aluno]){
                     arr.push(this.difficulty[aluno].nome)
-                    this.difficulty.splice(aluno,1)
+                    this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):this.difficulty[aluno].tutores-=1
+                    
                 }
                 else{
                     let aluno = this.toRaffle(this.origin_difficulty.length-1,0);
