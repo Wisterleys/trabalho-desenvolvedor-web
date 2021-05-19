@@ -79,14 +79,22 @@ class SorteioController{
     clear(el){
         el.forEach(e=>{e.remove()})
     }
-    print(){
+    print(vetor=false){
         this.clear(document.querySelectorAll(".list-group"))
-        this.general_list.forEach(res=>{
-            this.printTemplate({nameTutor:res.tutor,alunos:res.alunos})
-        })
+        if(vetor){
+            vetor.forEach(index => {
+                this.general_list[index]
+                this.printTemplate({nameTutor:this.general_list[index].tutor,alunos:this.general_list[index].alunos})
+            });
+        }else{
+            this.general_list.forEach((res,i)=>{
+                this.printTemplate({nameTutor:res.tutor,alunos:res.alunos},i)
+            })
+        }
     }
-    printTemplate(obj){
+    printTemplate(obj,i=false){
        let ul = this.createTags({place:this.printing_place,tag:"ul",class:"list-group col-sm-6"})
+       i?ul.dataset.id=i:0
        this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:`<p style="float:right;opacity:0.5;margin:0px;">Tutor</p><p style="clear:both;">${obj.nameTutor}</p>`})
        obj.alunos.forEach(aluno=>{
         this.createTags({place:ul,tag:"li",class:"list-group-item",insertTag:aluno})
@@ -133,7 +141,8 @@ class SorteioController{
     toRepair(arr){
         let validate= Math.abs(arr[0].v-arr[1].v2)
         let counter=0;
-        (arr[0].v==arr[1].v2)?this.roulette():this.warn(`Precisa igualar manualmente o valor dos dois array. <br> Olha a diferença: (${arr[0].v}) (${arr[1].v2}`);
+        (arr[0].v==arr[1].v2)?this.roulette()
+        :this.warn(`Precisa igualar manualmente os valore nos dois array. <br><br> Olha a diferença: (${arr[0].v}) (${arr[1].v2}`);
         
         console.log(arr,validate)
     }
