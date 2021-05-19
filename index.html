@@ -5,14 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        #button{
+            position: relative;
+            width: 100px;
+            height: 25px;
+            text-align: center;
+            border-radius: 180px;
+            cursor: pointer;
+            background-color: rgb(175, 162, 146);
+        }
+        #ball{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            top: 0;
+            left: 0;
+            border-radius: 180px;
+            background-color: cadetblue;
+        }
+    </style>
     <title>Sorteio</title>
 </head>
 <body>
-<div class="container">
-<div class="row" id="imp">
+<main class="container">
+    <header class="container-fluid mb-4">
+        <nav class="navbar navbar-light bg-dark justify-content-between">
+            <a class="navbar-brand text-light">Sorteio</a>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Sortear</button>
+            <div id="button">
+                Manual
+                <div id="ball"></div>
+            </div>
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </nav>
+    </header>
+<section class="row" id="imp">
     
-</div>
-</div>
+</section>
+</main>
 <script>
     function checkeds(lis){
         if(localStorage.getItem('lis')){

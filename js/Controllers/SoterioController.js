@@ -19,21 +19,9 @@ class SorteioController{
         })
     }
     printTemplate(obj){
-        /*
-            <ul class="list-group col-sm-6">
-                <h1>LISTA</h1>
-                <li class="list-group-item">
-                </li>
-                <li class="list-group-item">
-                </li>
-                <li class="list-group-item">
-                </li>
-            </ul>
-   
-
-        */
-       let ul = this.createTags({place:this.printing_place,tag:"div",class:"list-group col-sm-6"})
-       this.createTags({place:ul,tag:"h5",class:"list-group-item active",insertTag:obj.nameTutor})
+       
+       let ul = this.createTags({place:this.printing_place,tag:"ul",class:"list-group col-sm-6"})
+       this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:obj.nameTutor})
        obj.alunos.forEach(aluno=>{
         this.createTags({place:ul,tag:"li",class:"list-group-item",insertTag:aluno})
        })
