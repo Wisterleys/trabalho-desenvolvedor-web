@@ -103,7 +103,8 @@ class SorteioController{
                 let aluno = this.toRaffle(this.difficulty.length-1,0);
                 if(this.difficulty[aluno]){
                     arr.push(this.difficulty[aluno].nome)
-                    this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):this.difficulty[aluno].tutores-=1
+                    this.difficulty[aluno].tutores-=1
+                    this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):false
                     
                 }
                 else{
@@ -115,6 +116,9 @@ class SorteioController{
              this.ease.splice(tutor,1);
              this.ease.length<1?check=true:0
          }
+         if(this.difficulty.length){
+            console.log('ainda sobrou quantos aluno?',this.difficulty.length,this.difficulty)
+         }
          this.print();
     }
     toRaffle(max,min){
@@ -123,36 +127,8 @@ class SorteioController{
     toRepair(arr){
         let validate= Math.abs(arr[0].v-arr[1].v2)
         let counter=0;
-        let turn = arr[0].v<arr[1].v2?0:1
-        let loop = setInterval(()=>{
-            let num = turn<1?this.toRaffle(this.ease.length-1,0):this.toRaffle(this.difficulty.length-1,0)
-            switch(turn){
-                case 0:
-                    if(this.current_list.indexOf(this.ease[num].nome)<0){
-                        this.ease[num].alunos+=1;
-                        this.current_list.push(this.ease[num].nome)
-                        counter++;
-                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                            clearInterval(loop);
-                            this.roulette();
-                            this.current_list=[]
-                        }
-                    }
-                    break;
-                case 1:
-                    if(this.current_list.indexOf(this.difficulty[num].nome)<0){
-                        this.difficulty[num].tutores+=1;
-                        this.current_list.push(this.difficulty[num].nome)
-                        counter++;
-                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                            clearInterval(loop);
-                            this.roulette()
-                            this.current_list=[]
-                        }
-                    }
-                    break;
-            }
-        },100)
+        (arr[0].v==arr[1].v2)?alert("ok"):alert("Volta e corrige")
+        
         console.log(arr,validate)
     }
     check(value,value2){
