@@ -72,6 +72,9 @@ class SorteioController{
     manual(){
         !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette()
     }
+    search(){
+
+    }
     test(val){
         console.log(val)
         console.log(val[0].v+val[1].v2)
@@ -142,7 +145,7 @@ class SorteioController{
         let validate= Math.abs(arr[0].v-arr[1].v2)
         let counter=0;
         (arr[0].v==arr[1].v2)?this.roulette()
-        :this.warn(`Precisa igualar manualmente os valore nos dois array. <br><br> Olha a diferença: (${arr[0].v}) (${arr[1].v2}`);
+        :this.warn(`Precisa igualar manualmente os valore nos dois array. <br><br> Olha a diferença: (${arr[0].v}) (${arr[1].v2})`);
         
         console.log(arr,validate)
     }
