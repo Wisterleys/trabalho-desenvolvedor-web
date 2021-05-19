@@ -2,6 +2,7 @@ class SorteioController{
     constructor(obj){
         // 0 = ease | 1 = difficulty
         this._printing_place=obj.place;
+        this._warning=obj.warning
         this._ease;
         this._difficulty;
         this._origin_ease;
@@ -13,6 +14,7 @@ class SorteioController{
         this.ajaxGetOrigin();
         this.onBtn();
         this.onGo();
+        this.onModal();
     }
     toRepairAuto(num){
         let turn = num
@@ -124,10 +126,14 @@ class SorteioController{
     toRaffle(max,min){
         return Math.round(Math.random() * (max - min) + min);
     }
+    warn(msg){
+        document.querySelector("#sw").innerHTML=msg
+        this.warning.classList.add("fall")
+    }
     toRepair(arr){
         let validate= Math.abs(arr[0].v-arr[1].v2)
         let counter=0;
-        (arr[0].v==arr[1].v2)?alert("ok"):alert("Volta e corrige")
+        (arr[0].v==arr[1].v2)?this.warn("ok"):this.warn("Volta e corrige");
         
         console.log(arr,validate)
     }
@@ -197,6 +203,11 @@ class SorteioController{
         return tag
     }
     //LISTEN
+    onModal(){
+        document.querySelector("#x").addEventListener("click",e=>{
+            this.warning.classList.toggle("fall")
+        })
+    }
     onGo(){
         document.querySelector("#go").addEventListener("click",e=>{
             this.ajaxGet();
@@ -220,6 +231,8 @@ class SorteioController{
         })
     }
     //SETs and GETs
+    get warning(){return this._warning;}
+    set warning(value){this._warning=value;}
     get printing_place(){return this._printing_place;}
     get current_list(){return this._current_list;}
     set current_list(value){this._current_list=value;}
