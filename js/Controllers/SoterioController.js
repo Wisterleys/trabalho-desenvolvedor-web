@@ -35,7 +35,7 @@ class SorteioController{
     }
     printTemplate(obj){
        let ul = this.createTags({place:this.printing_place,tag:"ul",class:"list-group col-sm-6"})
-       this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:obj.nameTutor})
+       this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:`<p style="float:right;opacity:0.5;margin:0px;">Tutor</p><p style="clear:both;">${obj.nameTutor}</p>`})
        obj.alunos.forEach(aluno=>{
         this.createTags({place:ul,tag:"li",class:"list-group-item",insertTag:aluno})
        })
@@ -141,7 +141,7 @@ class SorteioController{
             let res = JSON.parse(ajax.responseText)
             this.ease=res.facilidade;
             this.difficulty=res.dificuldade;
-            document.querySelector("#button p").innerHTML=="Manual"?this.manual():this.auto()
+            document.querySelector("#button p").innerHTML=="Manualmente"?this.manual():this.auto()
         }
         ajax.onerror=err=>{
             console.log(err)
@@ -184,7 +184,15 @@ class SorteioController{
             document.querySelector("#ball").classList.toggle("ballR")
             setTimeout(e=>{
                 document.querySelector("#button").classList.toggle("bg-danger")
-                document.querySelector("#button p").innerHTML = document.querySelector("#button p").innerHTML=="Manual"?"Auto":"Manual"
+                if(document.querySelector("#button p").innerHTML=="Manualmente"){
+                    document.querySelector("#button p").innerHTML="Auto";
+                    document.querySelector("#button p").style.textAlign="center";
+
+                }else{
+                    document.querySelector("#button p").innerHTML="Manualmente";
+                    document.querySelector("#button p").style.textAlign="left";
+                }
+                
             },1000)
         })
     }
