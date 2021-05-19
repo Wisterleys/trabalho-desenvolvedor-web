@@ -14,9 +14,11 @@ class SorteioController{
         this.onBtn();
         this.onGo();
     }
-    auto(){}
+    auto(){
+        console.log("Chamou o auto. Falta configurar")
+    }
     manual(){
-
+        !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
     }
     test(val){
         console.log(val)
@@ -139,7 +141,7 @@ class SorteioController{
             let res = JSON.parse(ajax.responseText)
             this.ease=res.facilidade;
             this.difficulty=res.dificuldade;
-            !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
+            document.querySelector("#button p").innerHTML=="Manual"?this.manual():this.auto()
         }
         ajax.onerror=err=>{
             console.log(err)
