@@ -1,7 +1,7 @@
 <?php
 
 return [
-        ["nome"=>"Adele","alunos"=>1],
+        ["nome"=>"Adele","alunos"=>2],
         ["nome"=>"Alicia Keys","alunos"=>2],
         ["nome"=>"André Bankoff","alunos"=>1],
         ["nome"=>"Alinne Rosa","alunos"=>1],

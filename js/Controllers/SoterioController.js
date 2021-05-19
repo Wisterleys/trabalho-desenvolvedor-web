@@ -14,11 +14,60 @@ class SorteioController{
         this.onBtn();
         this.onGo();
     }
+    toRepairAuto(num){
+        let turn = num
+        let validate = Math.abs(this.ease.length-this.difficulty.length)
+        let counter=0;
+        let loop = setInterval(()=>{
+            let num = turn<2?this.toRaffle(this.ease.length-1,0):this.toRaffle(this.difficulty.length-1,0)
+            switch(turn){
+                case 1:
+                    if(this.current_list.indexOf(this.ease[num].nome)<0){
+                        this.ease[num].alunos+=1;
+                        this.current_list.push(this.ease[num].nome)
+                        counter++;
+                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                            clearInterval(loop);
+                            this.roulette();
+                            this.current_list=[]
+                        }
+                    }else{
+                        if(counter>=this.current_list.length){
+                            this.ease[num].alunos+=1;
+                            counter++;
+                            if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                                clearInterval(loop);
+                                this.roulette();
+                                this.current_list=[]
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    if(this.current_list.indexOf(this.difficulty[num].nome)<0){
+                        this.difficulty[num].tutores+=1;
+                        this.current_list.push(this.difficulty[num].nome)
+                        counter++;
+                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                            clearInterval(loop);
+                            this.roulette()
+                            this.current_list=[]
+                        }
+                    }
+                    break;
+            }
+        },100)
+        this.print();
+    }
     auto(){
-        console.log("Chamou o auto. Falta configurar")
+        let num=1
+        this.ease.map(e=>e.alunos=1)
+        this.difficulty.map(e=>e.tutores=1)
+        this.ease.length<this.difficulty.length?num=1:num=2
+        this.toRepairAuto(num)
     }
     manual(){
-        !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):false
+        !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette()
     }
     test(val){
         console.log(val)
@@ -83,8 +132,6 @@ class SorteioController{
                         counter++;
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                             clearInterval(loop);
-                            let val = this.check(this.ease,this.difficulty)
-                            this.test(val)
                             this.roulette();
                             this.current_list=[]
                         }
@@ -97,8 +144,6 @@ class SorteioController{
                         counter++;
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                             clearInterval(loop);
-                            let val = this.check(this.ease,this.difficulty)
-                            this.test(val)
                             this.roulette()
                             this.current_list=[]
                         }
