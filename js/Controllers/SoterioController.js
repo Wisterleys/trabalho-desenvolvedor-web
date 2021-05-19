@@ -11,8 +11,12 @@ class SorteioController{
 
         // Methods
         this.ajaxGetOrigin();
-        this.ajaxGet();
         this.onBtn();
+        this.onGo();
+    }
+    auto(){}
+    manual(){
+
     }
     test(val){
         console.log(val)
@@ -165,6 +169,11 @@ class SorteioController{
         return tag
     }
     //LISTEN
+    onGo(){
+        document.querySelector("#go").addEventListener("click",e=>{
+            this.ajaxGet();
+        })
+    }
     onBtn(){
         document.querySelector("#button").addEventListener('click',e=>{
             document.querySelector("#ball").classList.toggle("ballR")
