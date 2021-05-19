@@ -7,6 +7,7 @@ class SorteioController{
         this._current_list=[];
         this.general_list=[];
         this.ajaxGet();
+        this.onBtn();
     }
     test(val){
         console.log(val)
@@ -141,6 +142,16 @@ class SorteioController{
             obj.place.appendChild(tag);
         }
         return tag
+    }
+    //LISTEN
+    onBtn(){
+        document.querySelector("#button").addEventListener('click',e=>{
+            document.querySelector("#ball").classList.toggle("ballR")
+            setTimeout(e=>{
+                document.querySelector("#button").classList.toggle("bg-danger")
+                document.querySelector("#button p").innerHTML = document.querySelector("#button p").innerHTML=="Manual"?"Auto":"Manual"
+            },1000)
+        })
     }
     //SETs and GETs
     get printing_place(){return this._printing_place;}
