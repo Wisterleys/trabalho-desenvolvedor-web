@@ -133,7 +133,7 @@ class SorteioController{
     toRepair(arr){
         let validate= Math.abs(arr[0].v-arr[1].v2)
         let counter=0;
-        (arr[0].v==arr[1].v2)?this.warn("ok"):this.warn("Volta e corrige");
+        (arr[0].v==arr[1].v2)?this.roulette():this.warn(`Precisa igualar manualmente o valor dos dois array. <br> Olha a diferença: (${arr[0].v}) (${arr[1].v2}`);
         
         console.log(arr,validate)
     }
