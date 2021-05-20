@@ -27,20 +27,23 @@ class SorteioController{
             let num = turn<2?this.toRaffle(this.ease.length-1,0):this.toRaffle(this.difficulty.length-1,0)
             switch(turn){
                 case 1:
-                    if(this.current_list.indexOf(this.ease[num].nome)<0){
-                        this.ease[num].alunos+=1;
-                        this.current_list.push(this.ease[num].nome)
-                        counter++;
-                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                            loop=false;
-                            this.roulette();
-                            this.current_list=[]
-                            document.querySelector("#go").disabled=false;
-                        }
+                    if(this.current_list.length<this.ease.length){
+                        if(this.current_list.indexOf(this.ease[num].nome)<0){
+                            this.ease[num].alunos+=1;
+                            this.current_list.push(this.ease[num].nome)
+                            counter++;
+                            if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                                loop=false;
+                                this.roulette();
+                                this.current_list=[]
+                                document.querySelector("#go").disabled=false;
+                            }
+                    }
                     }else{
                         //Caso a quantidade de tutor e bem menor então e é preciso repitir sorteio com o mesmo tutor
                         if(counter>=this.current_list.length){
                             this.ease[num].alunos+=1;
+                            this.current_list.push(this.ease[num].nome)
                             counter++;
                             if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                                 loop=false;
@@ -52,21 +55,26 @@ class SorteioController{
                     }
                     break;
                 case 2:
-                    if(this.current_list.indexOf(this.difficulty[num].nome)<0){
-                        this.difficulty[num].tutores+=1;
-                        this.current_list.push(this.difficulty[num].nome)
-                        counter++;
-                        if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                            loop=false;
-                            this.roulette()
-                            this.current_list=[]
-                            document.querySelector("#go").disabled=false;
+                    if(this.current_list.length<this.difficulty.length){
+                        if(this.current_list.indexOf(this.difficulty[num].nome)<0){
+                            this.difficulty[num].tutores+=1;
+                            this.current_list.push(this.difficulty[num].nome)
+                            counter++;
+                            if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                                loop=false;
+                                this.roulette()
+                                this.current_list=[]
+                                document.querySelector("#go").disabled=false;
+                            }
                         }
+
                     }
                     else{
                         //Caso a quantidade de aluno e bem menor então e é preciso repitir sorteio com o mesmo tutor
+                        console.log(counter,this.current_list.length,this.difficulty.length)
                         if(counter>=this.current_list.length){
                             this.difficulty[num].tutores+=1;
+                            this.current_list.push(this.difficulty[num].nome)
                             counter++;
                             if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
                                 loop=false;
