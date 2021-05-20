@@ -34,6 +34,7 @@ class SorteioController{
                             clearInterval(loop);
                             this.roulette();
                             this.current_list=[]
+                            document.querySelector("#go").disabled=false;
                         }
                     }else{
                         //Caso a quantidade de tutor e bem menor então e é preciso repitir sorteio com o mesmo tutor
@@ -44,6 +45,7 @@ class SorteioController{
                                 clearInterval(loop);
                                 this.roulette();
                                 this.current_list=[]
+                                document.querySelector("#go").disabled=false;
                             }
                         }
                     }
@@ -57,6 +59,7 @@ class SorteioController{
                             clearInterval(loop);
                             this.roulette()
                             this.current_list=[]
+                            document.querySelector("#go").disabled=false;
                         }
                     }
                     break;
@@ -103,11 +106,11 @@ class SorteioController{
                 this.general_list[index]?
                 this.printTemplate({nameTutor:this.general_list[index].tutor,alunos:this.general_list[index].alunos},index):0
             });
-            
         }else{
             this.general_list.forEach((res,i)=>{
                 this.printTemplate({nameTutor:res.tutor,alunos:res.alunos},i+=1)
             })
+            
         }
     }
     printTemplate(obj,i=false){
@@ -157,8 +160,6 @@ class SorteioController{
         this.warning.classList.add("fall")
     }
     toRepair(arr){
-        let validate= Math.abs(arr[0].v-arr[1].v2)
-        let counter=0;
         (arr[0].v==arr[1].v2)?this.roulette()
         :this.warn(`Precisa igualar manualmente os valore nos dois array. <br><br> Olha a diferença: (${arr[0].v}) (${arr[1].v2})`);
         
@@ -244,6 +245,7 @@ class SorteioController{
     onGo(){
         document.querySelector("#go").addEventListener("click",e=>{
             this.ajaxGet();
+            document.querySelector("#go").disabled=true;
         })
     }
     onBtn(){
