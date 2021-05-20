@@ -162,7 +162,6 @@ class SorteioController{
         (arr[0].v==arr[1].v2)?this.roulette()
         :this.warn(`Precisa igualar manualmente os valore nos dois array. <br><br> Olha a diferença: (${arr[0].v}) (${arr[1].v2})`);
         
-        console.log(arr,validate)
     }
     check(value,value2){
         let arr=[{v:0},{v2:0}];
@@ -181,7 +180,6 @@ class SorteioController{
         ajax.send();
         ajax.onload=e=>{
             let res = JSON.parse(ajax.responseText)
-            console.log(res)
             this.origin_ease=res.facilidade;
             this.origin_difficulty=res.dificuldade;
         }
