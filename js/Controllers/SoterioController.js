@@ -3,6 +3,7 @@ class SorteioController{
         // 0 = ease | 1 = difficulty
         this._printing_place=obj.place;
         this._warning=obj.warning
+        this._word;
         this._ease;
         this._difficulty;
         this._origin_ease;
@@ -15,6 +16,7 @@ class SorteioController{
         this.onBtn();
         this.onGo();
         this.onModal();
+        this.onSearch();
     }
     toRepairAuto(num){
         let turn = num
@@ -72,8 +74,18 @@ class SorteioController{
     manual(){
         !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette()
     }
-    search(){
-
+    search(value){
+        let vet=[];
+        if(this.printing_place.childNodes.length>1&&value){
+            document.querySelectorAll(".search").forEach(s=>{
+                if(s.innerHTML.search(value)>-1){
+                    this.word=value;
+                    s.parentNode.dataset.id?vet.push(parseInt(s.parentNode.dataset.id)-1):vet.push(parseInt(s.parentNode.parentNode.dataset.id)-1)
+                    
+                }
+            })
+            return vet;
+        }
     }
     test(val){
         console.log(val)
@@ -82,25 +94,28 @@ class SorteioController{
     clear(el){
         el.forEach(e=>{e.remove()})
     }
-    print(vetor=false){
+    print(vetor=[]){
+        let v=true;
         this.clear(document.querySelectorAll(".list-group"))
-        if(vetor){
+        vetor.forEach(e=>{isNaN(e)?v=false:0})
+        if(vetor.length>0&&v){
             vetor.forEach(index => {
-                this.general_list[index]
-                this.printTemplate({nameTutor:this.general_list[index].tutor,alunos:this.general_list[index].alunos})
+                this.general_list[index]?
+                this.printTemplate({nameTutor:this.general_list[index].tutor,alunos:this.general_list[index].alunos},index):0
             });
+            
         }else{
             this.general_list.forEach((res,i)=>{
-                this.printTemplate({nameTutor:res.tutor,alunos:res.alunos},i)
+                this.printTemplate({nameTutor:res.tutor,alunos:res.alunos},i+=1)
             })
         }
     }
     printTemplate(obj,i=false){
        let ul = this.createTags({place:this.printing_place,tag:"ul",class:"list-group col-sm-6"})
        i?ul.dataset.id=i:0
-       this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:`<p style="float:right;opacity:0.5;margin:0px;">Tutor</p><p style="clear:both;">${obj.nameTutor}</p>`})
+       this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:`<p style="float:right;opacity:0.5;margin:0px;">Tutor</p><p style="clear:both;" class="search">${obj.nameTutor}</p>`})
        obj.alunos.forEach(aluno=>{
-        this.createTags({place:ul,tag:"li",class:"list-group-item",insertTag:aluno})
+        this.createTags({place:ul,tag:"li",class:"list-group-item search",insertTag:aluno})
        })
     }
     found(array,value){
@@ -215,6 +230,14 @@ class SorteioController{
         return tag
     }
     //LISTEN
+   
+    onSearch(){
+        document.querySelector("#btn-search").addEventListener("click",e=>{
+           this.print(this.search(document.querySelector("#search").value))
+           document.querySelector("#btn-search").disabled=true
+           setTimeout(()=>{document.querySelector("#btn-search").disabled=false},3000)
+        })
+    }
     onModal(){
         document.querySelector("#x").addEventListener("click",e=>{
             this.warning.classList.toggle("fall")
@@ -243,6 +266,8 @@ class SorteioController{
         })
     }
     //SETs and GETs
+    get word(){return this._word;}
+    set word(value){this._word=value;}
     get warning(){return this._warning;}
     set warning(value){this._warning=value;}
     get printing_place(){return this._printing_place;}
