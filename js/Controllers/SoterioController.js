@@ -91,15 +91,17 @@ class SorteioController{
     }
     search(value){
         let vet=[];
-        if(this.printing_place.childNodes.length>1&&value){
-            document.querySelectorAll(".search").forEach(s=>{
-                if(s.innerHTML.search(value)>-1){
-                    s.parentNode.dataset.id?vet.push(parseInt(s.parentNode.dataset.id)-1):vet.push(parseInt(s.parentNode.parentNode.dataset.id)-1)
+        let vali=true;
+        for (let l = 0; l < this.general_list.length; l++) {
+            if(this.general_list[l].tutor.search(value)>-1){vali=false;vet.push(l)}
+                for (let i = 0; i < this.general_list[l].alunos.length; i++) {
+                    if(this.general_list[l].alunos[i].search(value)>-1){vet.push(l)}
                     
                 }
-            })
-            return vet;
+           
+            
         }
+        return vet;
     }
     test(val){
         console.log(val)
