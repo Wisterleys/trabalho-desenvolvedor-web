@@ -20,7 +20,6 @@ class SorteioController{
     toRepairAuto(n){
         let turn = n
         let validate = Math.abs(this.ease.length-this.difficulty.length)
-        console.log(validate)
         let counter=0;
         let loop = true
        while(loop){
@@ -71,7 +70,6 @@ class SorteioController{
                     }
                     else{
                         //Caso a quantidade de aluno e bem menor então e é preciso repitir sorteio com o mesmo tutor
-                        console.log(counter,this.current_list.length,this.difficulty.length)
                         if(counter>=this.current_list.length){
                             this.difficulty[num].tutores+=1;
                             this.current_list.push(this.difficulty[num].nome)
