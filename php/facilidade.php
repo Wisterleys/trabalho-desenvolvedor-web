@@ -15,7 +15,7 @@ return [
         ["nome"=>"Aryane Steinkopf","alunos"=>1],
         ["nome"=>"Novela Alto Astral","alunos"=>1],
         ["nome"=>"Armando Babaioff","alunos"=>1],
-        ["nome"=>"Aracy Balabanian","alunos"=>1],
+        ["nome"=>"Aracy Balabanian","alunos"=>3],
         ["nome"=>"Aline BarrosAdriana Birolli","alunos"=>1],
         ["nome"=>"Alexandre Borges","alunos"=>1],
         ["nome"=>"Arianne Botelho","alunos"=>1],

@@ -87,7 +87,7 @@ class SorteioController{
         this.toRepairAuto(num)
     }
     manual(){
-        !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette()
+        !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette(true)
     }
     search(value){
         let vet=[];
@@ -136,7 +136,7 @@ class SorteioController{
     found(array,value){
         return array.indexOf(value)>-1?false:true//Retorna falso se encontrar o valor e true se não encontrar
     }
-    roulette(){
+    roulette(manual=false){
         this.general_list=[];
          let check=false;
          let vali;
@@ -187,6 +187,7 @@ class SorteioController{
             console.log('ainda sobrou quantos aluno?',this.difficulty.length,this.difficulty)
          }
          this.print();
+         manual?document.querySelector("#go").disabled=false:0;
     }
     toRaffle(max,min){
         return Math.round(Math.random() * (max - min) + min);
