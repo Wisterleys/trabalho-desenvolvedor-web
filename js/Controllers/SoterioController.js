@@ -139,53 +139,42 @@ class SorteioController{
     roulette(manual=false){
         this.general_list=[];
          let check=false;
-         let vali;
-         while (!check) {
+         while (!check) {//Loop para soertear
+            let vali = true;
+            let again=false
              let arr=[]
-             let tutor = this.toRaffle(this.ease.length-1,0);
+             let tutor = this.toRaffle(this.ease.length-1,0);//Sorteio de tutor
              let index = 0;
              while ( index < this.ease[tutor].alunos) {
-                let aluno = this.toRaffle(this.difficulty.length-1,0);
-                if(this.difficulty[aluno]){
-                    if(this.general_list.length<=this.ease.length){
-                        vali = true;
-                        if(this.general_list[tutor]&&Array.isArray(this.general_list[tutor].alunos)){
-                            this.general_list[tutor].alunos.push(this.difficulty[aluno].nome);
-                            vali=false;
-                        }
-                        vali?arr.push(this.difficulty[aluno].nome):0
-                        this.difficulty[aluno].tutores-=1
-                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):false
-                        console.log(this.difficulty[aluno])
+                let aluno = this.toRaffle(this.difficulty.length-1,0);//Sorteio de aluno
+                if(this.general_list[tutor]&&Array.isArray(this.general_list[tutor].alunos)){
+                    if(this.general_list[tutor].alunos.indexOf(this.difficulty[aluno].nome)<0&&this.general_list.length<this.origin_ease.length){//VERIFICA SE ESSE TUTOR JÁ TEM ESSE MESMO ALUNO
+                        this.general_list[tutor].alunos.push(this.difficulty[aluno].nome)
+                        this.difficulty[aluno].tutores--;
+                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
+                        vali=false;
                         index++
                     }
                     else{
-                        vali = true;
-                        if(this.general_list[tutor]&&Array.isArray(this.general_list[tutor].alunos)){
-                            this.general_list[tutor].alunos.push(this.difficulty[aluno].nome);
-                            vali=false;
-                        }
-                        vali?arr.push(this.difficulty[aluno].nome):0
-                        this.difficulty[aluno].tutores-=1
-                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):false
-                        console.log(this.difficulty[aluno])
+                        this.general_list[tutor].alunos.push(this.difficulty[aluno].nome)
+                        this.difficulty[aluno].tutores--;
+                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
+                        vali=false;
                         index++
                     }
-                }
-                else{
-                    let aluno = this.toRaffle(this.origin_difficulty.length-1,0);
-                   arr.push(`<p class="container-fluid bg-danger text-light">${this.origin_difficulty[aluno].nome}<p>`)
-                   index++
+                }else{
+                    arr.push(this.difficulty[aluno].nome)
+                    this.difficulty[aluno].tutores--;
+                    this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
+                    index++
                 }
              }
              vali?this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr}):0
-             vali=true
-             this.ease.splice(tutor,1);
+             this.ease.splice(tutor,1)
              this.ease.length<1?check=true:0
-         }
-         if(this.difficulty.length){
-            console.log('ainda sobrou quantos aluno?',this.difficulty.length,this.difficulty)
-         }
+             
+            
+        }
          this.print();
          manual?document.querySelector("#go").disabled=false:0;
     }
