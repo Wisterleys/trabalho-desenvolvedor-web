@@ -117,18 +117,17 @@ class SorteioController{
         if(vetor.length>0&&v){
             vetor.forEach(index => {
                 this.general_list[index]?
-                this.printTemplate({nameTutor:this.general_list[index].tutor,alunos:this.general_list[index].alunos},index):0
+                this.printTemplate({nameTutor:this.general_list[index].tutor,alunos:this.general_list[index].alunos}):0
             });
         }else{
-            this.general_list.forEach((res,i)=>{
-                this.printTemplate({nameTutor:res.tutor,alunos:res.alunos},i+=1)
+            this.general_list.forEach(res=>{
+                this.printTemplate({nameTutor:res.tutor,alunos:res.alunos})
             })
             
         }
     }
-    printTemplate(obj,i=false){
+    printTemplate(obj){
        let ul = this.createTags({place:this.printing_place,tag:"ul",class:"list-group col-sm-6"})
-       i?ul.dataset.id=i:0
        this.createTags({place:ul,tag:"h5",class:"list-group-item bg-dark  text-light",insertTag:`<p style="float:right;opacity:0.5;margin:0px;">Tutor</p><p style="clear:both;" class="search">${obj.nameTutor}</p>`})
        obj.alunos.forEach(aluno=>{
         this.createTags({place:ul,tag:"li",class:"list-group-item search",insertTag:aluno})
