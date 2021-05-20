@@ -251,6 +251,7 @@ class SorteioController{
     onModal(){
         document.querySelector("#x").addEventListener("click",e=>{
             this.warning.classList.toggle("fall")
+            document.querySelector("#go").disabled=false;
         })
     }
     onGo(){
