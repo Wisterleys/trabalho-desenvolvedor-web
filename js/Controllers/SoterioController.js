@@ -3,7 +3,6 @@ class SorteioController{
         // 0 = ease | 1 = difficulty
         this._printing_place=obj.place;
         this._warning=obj.warning
-        this._word;
         this._ease;
         this._difficulty;
         this._origin_ease;
@@ -62,6 +61,19 @@ class SorteioController{
                             document.querySelector("#go").disabled=false;
                         }
                     }
+                    else{
+                        //Caso a quantidade de aluno e bem menor então e é preciso repitir sorteio com o mesmo tutor
+                        if(counter>=this.current_list.length){
+                            this.difficulty[num].tutores+=1;
+                            counter++;
+                            if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
+                                clearInterval(loop);
+                                this.roulette();
+                                this.current_list=[]
+                                document.querySelector("#go").disabled=false;
+                            }
+                        }
+                    }
                     break;
             }
         },100)
@@ -82,7 +94,6 @@ class SorteioController{
         if(this.printing_place.childNodes.length>1&&value){
             document.querySelectorAll(".search").forEach(s=>{
                 if(s.innerHTML.search(value)>-1){
-                    this.word=value;
                     s.parentNode.dataset.id?vet.push(parseInt(s.parentNode.dataset.id)-1):vet.push(parseInt(s.parentNode.parentNode.dataset.id)-1)
                     
                 }
@@ -266,8 +277,6 @@ class SorteioController{
         })
     }
     //SETs and GETs
-    get word(){return this._word;}
-    set word(value){this._word=value;}
     get warning(){return this._warning;}
     set warning(value){this._warning=value;}
     get printing_place(){return this._printing_place;}
