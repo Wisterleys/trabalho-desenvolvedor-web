@@ -10,22 +10,6 @@ return [
     ["nome"=>"Bruno Chateaubriand","tutores"=>1],
     ["nome"=>"Bruna Citadella","tutores"=>1],
     ["nome"=>"Bianca Comparato","tutores"=>1],
-    ["nome"=>"Bruno De Luca","tutores"=>1],
-    ["nome"=>"Betty Faria","tutores"=>1],
-    ["nome"=>"Bárbara Evans","tutores"=>3],
-    ["nome"=>"Bella Falconi","tutores"=>1],
-    ["nome"=>"Bela Fernandes","tutores"=>1],
-    ["nome"=>"Bruno Ferrari","tutores"=>1],
-    ["nome"=>"Barbara França","tutores"=>1],
-    ["nome"=>"Bruno Gadiol","tutores"=>1],
-    ["nome"=>"Bruno Gagliasso","tutores"=>1],
-    ["nome"=>"Bruno Garcia","tutores"=>1],
-    ["nome"=>"Bela Gil","tutores"=>1],
-    ["nome"=>"Brunna Gonçalves","tutores"=>1],
-    ["nome"=>"Bruna Griphao","tutores"=>1],
-    ["nome"=>"Bruno Guedes","tutores"=>1],
-    ["nome"=>"Bella Hadid","tutores"=>1],
-    ["nome"=>"Bruna Hamú","tutores"=>1],
-    ["nome"=>"Britto Jr.","tutores"=>1],
+   
 
 ];

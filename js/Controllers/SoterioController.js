@@ -17,11 +17,13 @@ class SorteioController{
         this.onModal();
         this.onSearch();
     }
-    toRepairAuto(num){
-        let turn = num
+    toRepairAuto(n){
+        let turn = n
         let validate = Math.abs(this.ease.length-this.difficulty.length)
+        console.log(validate)
         let counter=0;
-        let loop = setInterval(()=>{
+        let loop = true
+       while(loop){
             let num = turn<2?this.toRaffle(this.ease.length-1,0):this.toRaffle(this.difficulty.length-1,0)
             switch(turn){
                 case 1:
@@ -30,7 +32,7 @@ class SorteioController{
                         this.current_list.push(this.ease[num].nome)
                         counter++;
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                            clearInterval(loop);
+                            loop=false;
                             this.roulette();
                             this.current_list=[]
                             document.querySelector("#go").disabled=false;
@@ -41,7 +43,7 @@ class SorteioController{
                             this.ease[num].alunos+=1;
                             counter++;
                             if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                                clearInterval(loop);
+                                loop=false;
                                 this.roulette();
                                 this.current_list=[]
                                 document.querySelector("#go").disabled=false;
@@ -55,7 +57,7 @@ class SorteioController{
                         this.current_list.push(this.difficulty[num].nome)
                         counter++;
                         if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                            clearInterval(loop);
+                            loop=false;
                             this.roulette()
                             this.current_list=[]
                             document.querySelector("#go").disabled=false;
@@ -67,7 +69,7 @@ class SorteioController{
                             this.difficulty[num].tutores+=1;
                             counter++;
                             if(counter>=validate&&this.check(this.ease,this.difficulty)[2]){
-                                clearInterval(loop);
+                                loop=false;
                                 this.roulette();
                                 this.current_list=[]
                                 document.querySelector("#go").disabled=false;
@@ -76,7 +78,7 @@ class SorteioController{
                     }
                     break;
             }
-        },100)
+        }
         this.print();
     }
     auto(){
@@ -98,8 +100,6 @@ class SorteioController{
                     if(this.general_list[l].alunos[i].search(value)>-1){vet.push(l)}
                     
                 }
-           
-            
         }
         return vet;
     }
