@@ -88,11 +88,11 @@ class SorteioController{
         this.print();
     }
     auto(){
-        let num=1
         this.ease.map(e=>e.alunos=1)
         this.difficulty.map(e=>e.tutores=1)
-        this.ease.length<this.difficulty.length?num=1:num=2
-        this.toRepairAuto(num)
+        if(this.ease.length<this.difficulty.length)this.toRepairAuto(1)
+        else if(this.ease.length>this.difficulty.length)this.toRepairAuto(2)
+        else this.toRaffle()
     }
     manual(){
         !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette(true)
@@ -176,6 +176,7 @@ class SorteioController{
                 }
              }
              vali?this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr}):0
+             console.log(this.ease)
              this.ease.splice(tutor,1)
              this.ease.length<1?check=true:0
              
@@ -215,6 +216,7 @@ class SorteioController{
             let res = JSON.parse(ajax.responseText)
             this.origin_ease=res.facilidade;
             this.origin_difficulty=res.dificuldade;
+            console.log(`tutor: ${this.origin_ease.length} alunos: ${this.origin_difficulty.length}`)
         }
         ajax.onerror=err=>{
             console.log(err)

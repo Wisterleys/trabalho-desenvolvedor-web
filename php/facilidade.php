@@ -26,4 +26,7 @@ return [
         ["nome"=>"Ana Flávia Cavalcanti","alunos"=>1],
         ["nome"=>"Arlindo Cruz","alunos"=>1],
         ["nome"=>"Amanda de Godoi","alunos"=>1],
+        ["nome"=>"Wister","alunos"=>1],
+        ["nome"=>"Wisterleys","alunos"=>1],
+        
 ];
