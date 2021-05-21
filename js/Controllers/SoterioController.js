@@ -22,6 +22,7 @@ class SorteioController{
         let validate = Math.abs(this.ease.length-this.difficulty.length)
         let counter=0;
         let loop = true
+        console.log(turn)
        while(loop){
             let num = turn<2?this.toRaffle(this.ease.length-1,0):this.toRaffle(this.difficulty.length-1,0)
             switch(turn){
@@ -146,42 +147,23 @@ class SorteioController{
         this.general_list=[];
          let check=false;
          while (!check) {//Loop para soertear
-            let vali = true;
-            let again=false
              let arr=[]
              let tutor = this.toRaffle(this.ease.length-1,0);//Sorteio de tutor
              let index = 0;
              while ( index < this.ease[tutor].alunos) {
                 let aluno = this.toRaffle(this.difficulty.length-1,0);//Sorteio de aluno
-                if(this.general_list[tutor]&&Array.isArray(this.general_list[tutor].alunos)){
-                    if(this.general_list[tutor].alunos.indexOf(this.difficulty[aluno].nome)<0&&this.general_list.length<this.origin_ease.length){//VERIFICA SE ESSE TUTOR JÁ TEM ESSE MESMO ALUNO
-                        this.general_list[tutor].alunos.push(this.difficulty[aluno].nome)
-                        this.difficulty[aluno].tutores--;
-                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
-                        vali=false;
-                        index++
-                    }
-                    else{
-                        this.general_list[tutor].alunos.push(this.difficulty[aluno].nome)
-                        this.difficulty[aluno].tutores--;
-                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
-                        vali=false;
-                        index++
-                    }
-                }else{
                     arr.push(this.difficulty[aluno].nome)
                     this.difficulty[aluno].tutores--;
                     this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
                     index++
-                }
              }
-             vali?this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr}):0
-             console.log(this.ease)
+             this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr})
              this.ease.splice(tutor,1)
              this.ease.length<1?check=true:0
              
             
         }
+        console.log(this.difficulty)
          this.print();
          manual?document.querySelector("#go").disabled=false:0;
     }
