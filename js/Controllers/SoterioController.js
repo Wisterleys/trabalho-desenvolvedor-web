@@ -22,7 +22,6 @@ class SorteioController{
         let validate = Math.abs(this.ease.length-this.difficulty.length)
         let counter=0;
         let loop = true
-        console.log(turn)
        while(loop){
             let num = turn<2?this.toRaffle(this.ease.length-1,0):this.toRaffle(this.difficulty.length-1,0)
             switch(turn){
@@ -152,10 +151,12 @@ class SorteioController{
              let index = 0;
              while ( index < this.ease[tutor].alunos) {
                 let aluno = this.toRaffle(this.difficulty.length-1,0);//Sorteio de aluno
-                    arr.push(this.difficulty[aluno].nome)
-                    this.difficulty[aluno].tutores--;
-                    this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
-                    index++
+                    if(arr.indexOf(this.difficulty[aluno].nome)<0){
+                        arr.push(this.difficulty[aluno].nome)
+                        this.difficulty[aluno].tutores--;
+                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
+                        index++
+                    }
              }
              this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr})
              this.ease.splice(tutor,1)
@@ -163,7 +164,6 @@ class SorteioController{
              
             
         }
-        console.log(this.difficulty)
          this.print();
          manual?document.querySelector("#go").disabled=false:0;
     }
@@ -198,7 +198,6 @@ class SorteioController{
             let res = JSON.parse(ajax.responseText)
             this.origin_ease=res.facilidade;
             this.origin_difficulty=res.dificuldade;
-            console.log(`tutor: ${this.origin_ease.length} alunos: ${this.origin_difficulty.length}`)
         }
         ajax.onerror=err=>{
             console.log(err)

@@ -5,7 +5,7 @@ return [
         ["nome"=>"Alicia Keys","alunos"=>1],
         ["nome"=>"André Bankoff","alunos"=>1],
         ["nome"=>"Alinne Rosa","alunos"=>1],
-        ["nome"=>"André Marques","alunos"=>1],
+        ["nome"=>"André Marques","alunos"=>3],
         ["nome"=>"Alessandra Ambrosio","alunos"=>1],
         ["nome"=>"Ana Furtado","alunos"=>1],
         ["nome"=>"Ana Paula Araújo","alunos"=>1],
