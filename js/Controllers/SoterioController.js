@@ -92,7 +92,7 @@ class SorteioController{
         this.difficulty.map(e=>e.tutores=1)
         if(this.ease.length<this.difficulty.length)this.toRepairAuto(1)
         else if(this.ease.length>this.difficulty.length)this.toRepairAuto(2)
-        else this.toRaffle()
+        else this.roulette();
     }
     manual(){
         !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette(true)
