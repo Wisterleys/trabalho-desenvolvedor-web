@@ -3,6 +3,7 @@ class SorteioController{
         // 0 = ease | 1 = difficulty
         this._printing_place=obj.place;
         this._warning=obj.warning
+        this.manualmente=false
         this._ease;
         this._difficulty;
         this._origin_ease;
@@ -88,6 +89,7 @@ class SorteioController{
         this.print();
     }
     auto(){
+        this.manualmente=false
         this.ease.map(e=>e.alunos=1)
         this.difficulty.map(e=>e.tutores=1)
         if(this.ease.length<this.difficulty.length)this.toRepairAuto(1)
@@ -95,7 +97,8 @@ class SorteioController{
         else this.roulette();
     }
     manual(){
-        !this.check(this.ease,this.difficulty)[2]?this.toRepair(this.check(this.ease,this.difficulty)):this.roulette(true)
+        this.manualmente=true
+        this.toRepair(this.check(this.ease,this.difficulty))
     }
     search(value){
         let vet=[];
@@ -151,11 +154,18 @@ class SorteioController{
              let index = 0;
              while ( index < this.ease[tutor].alunos) {
                 let aluno = this.toRaffle(this.difficulty.length-1,0);//Sorteio de aluno
-                    if(arr.indexOf(this.difficulty[aluno].nome)<0){
-                        arr.push(this.difficulty[aluno].nome)
-                        this.difficulty[aluno].tutores--;
-                        this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
-                        index++
+                    if(!this.manualmente){
+                        if(arr.indexOf(this.difficulty[aluno].nome)<0){
+                            arr.push(this.difficulty[aluno].nome)
+                            this.difficulty[aluno].tutores--;
+                            this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
+                            index++
+                        }
+                    }else{
+                            arr.push(this.difficulty[aluno].nome)
+                            this.difficulty[aluno].tutores--;
+                            this.difficulty[aluno].tutores<1?this.difficulty.splice(aluno,1):0
+                            index++
                     }
              }
              this.general_list.push({tutor:this.ease[tutor].nome,alunos:arr})
@@ -175,7 +185,7 @@ class SorteioController{
         this.warning.classList.add("fall")
     }
     toRepair(arr){
-        (arr[0].v==arr[1].v2)?this.roulette()
+        (arr[0].v==arr[1].v2)?this.roulette(true)
         :this.warn(`Precisa igualar manualmente os valore nos dois array. <br><br> Olha a diferença: (${arr[0].v}) (${arr[1].v2})`);
         
     }
