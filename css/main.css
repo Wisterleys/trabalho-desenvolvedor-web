@@ -73,7 +73,9 @@
     left: 100%;
     transform: translate(-50%,-65%);
 }
-
+/*
+https://fontawesome.com/v4.7/get-started/
+*/
 @media print {
     .no-print{
         visibility: hidden;
