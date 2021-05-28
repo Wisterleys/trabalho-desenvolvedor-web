@@ -73,3 +73,9 @@
     left: 100%;
     transform: translate(-50%,-65%);
 }
+
+@media print {
+    .no-print{
+        visibility: hidden;
+    }
+}

@@ -3,7 +3,8 @@ const CONF={
     warning:document.querySelector("#warning")//MODAL
 }
 const CONF_PRINT={
-    print_area:document.querySelector("#print")
+    print_area:document.querySelector(".print"),
+    btn_click:document.querySelector("#btn-print")
 }
 new SorteioController(CONF);
 new PrintScreenController(CONF_PRINT);
