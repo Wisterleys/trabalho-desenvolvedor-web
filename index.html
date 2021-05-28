@@ -24,6 +24,7 @@
             </form>
           </nav>
     </header>
+    <i class="fa fa-print" aria-hidden="false"></i>
     <section id="warning" class="">
         <header id="w">
             <input type="image" src="img/circle-x-small-background.png" alt="X" id="x">
@@ -43,33 +44,8 @@
 </section>
 
 </main>
-<script>
-    function checkeds(lis){
-        if(localStorage.getItem('lis')){
-            let l = JSON.parse(localStorage.getItem('lis'));
-            lis.forEach((li,i)=>{
-                li.querySelector("input").checked=l[i]?true:false;
-                l[i]?li.classList.add("active"):li.classList.remove("active")
-            })
-        }
-    }
-    function checkedsSalve(lis){
-        let ve=[];
-        lis.forEach(li=>{
-            ve.push(li.querySelector("input").checked);
-        })
-        localStorage.setItem("lis",JSON.stringify(ve))
-    }
-    let lis = document.querySelectorAll(".list-group-item");
-    checkeds(lis)
-    lis.forEach(li=>{
-        li.addEventListener("click",e=>{
-            checkedsSalve(lis);
-            checkeds(lis);
-        })
-    })
-</script>
 <script src="js/Controllers/SoterioController.js"></script>
+<script src="js/Controllers/PrintScreenController.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>
